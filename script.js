@@ -1,4 +1,4 @@
-let numberOfFilms = prompt('Сколько фильмов вы постмотрели?');
+const numberOfFilms = +prompt('Сколько фильмов вы постмотрели?');
 
 const personalMovieDB = {
     count: numberOfFilms,
@@ -7,12 +7,28 @@ const personalMovieDB = {
     genres: [],
     privat: false
 }
-const func = () => {
-    for (i = 0; i < 2; i++) {
-        let movie = prompt('Один из последних просмотренных фильмов?');
-        let stars = prompt('на сколько оцените его?');
-        personalMovieDB.movies[movie] = stars
+
+for (let i = 0; i < 2; i++) {
+    let movie = prompt('Один из последних просмотренных фильмов?', '');
+    let stars = prompt('на сколько оцените его?', '');
+
+    if (movie != null && movie != '' && movie.length < 50 && stars != null && stars != '') {
+        personalMovieDB.movies[movie] = stars;
+    } else {
+        i--
     }
+
 }
-func()
+
+if (personalMovieDB.count < 10) {
+    console.log('мало фильмов')
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    console.log('классика')
+} else if (personalMovieDB.count >= 30) {
+    console.log('много')
+} else {
+    console.log('ошибка')
+}
+
+
 console.log(personalMovieDB)
